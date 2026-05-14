@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Usahawan BizHub — TVETMARA LUMUT</title>
+<link rel="icon" type="image/png" href="logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#0F1419;
+  --ink2:#2C3640;
+  --ink3:#5A6470;
+  --ink4:#8B96A0;
+  --parchment:#F8F5F0;
+  --parchment2:#F1EDE6;
+  --parchment3:#E8E2D9;
+  --gold:#8B6914;
+  --gold2:#B8891A;
+  --gold-light:#F5EDD8;
+  --gold-border:rgba(139,105,20,.2);
+  --white:#FFFFFF;
+  --green:#1B6B42;
+  --green-bg:#EAF4EE;
+  --border:#DDD8D0;
+  --shadow-sm:0 1px 4px rgba(15,20,25,.06);
+  --shadow:0 4px 16px rgba(15,20,25,.08);
+  --shadow-lg:0 12px 40px rgba(15,20,25,.12);
+  --nav-h:72px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --r:3px;
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--parchment);
+  color:var(--ink);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  font-size:14px;
+  line-height:1.6;
+}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--parchment);}
+::-webkit-scrollbar-thumb{background:var(--parchment3);border-radius:4px;}
+
+/* ─ TYPOGRAPHY ─ */
+.serif{font-family:'Cormorant Garamond',serif;}
+
+/* ─ NAV ─ */
+#nav{
+  position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;
+  background:rgba(248,245,240,.96);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(20px);
+  transition:box-shadow .3s;
+}
+#nav.scrolled{box-shadow:var(--shadow);}
+
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+.nav-logo-mark{
+  width:38px;height:38px;
+  border:1.5px solid var(--gold-border);
+  background:var(--gold-light);
+  border-radius:var(--r);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.nav-logo-mark svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+.nav-divider{width:1px;height:28px;background:var(--border);}
+.nav-brand{display:flex;flex-direction:column;}
+.nav-brand-main{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:.01em;}
+.nav-brand-sub{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink4);margin-top:2px;}
+
+.nav-links{display:flex;align-items:center;gap:2px;}
+.nav-link{
+  font-size:12px;font-weight:500;letter-spacing:.04em;
+  color:var(--ink3);text-decoration:none;
+  padding:8px 16px;border-radius:var(--r);
+  transition:background .18s,color .18s;
+}
+.nav-link:hover{background:var(--parchment2);color:var(--ink);}
+.nav-link.primary{
+  background:var(--ink);color:var(--white);
+  font-weight:600;letter-spacing:.05em;
+  margin-left:6px;
+}
+.nav-link.primary:hover{background:var(--ink2);}
+
+/* ─ HERO ─ */
+.hero{
+  min-height:100svh;
+  padding:var(--nav-h) 0 0;
+  display:flex;flex-direction:column;
+  background:var(--parchment);
+  position:relative;overflow:hidden;
+}
+.hero-rule{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden;}
+.hero-rule::before{
+  content:'';position:absolute;
+  top:calc(var(--nav-h) + 80px);right:0;
+  width:520px;height:520px;
+  background:radial-gradient(ellipse at center,rgba(139,105,20,.07) 0%,transparent 70%);
+  border-radius:50%;
+}
+.hero-rule::after{
+  content:'';position:absolute;
+  bottom:-80px;left:-80px;
+  width:360px;height:360px;
+  background:radial-gradient(ellipse at center,rgba(139,105,20,.05) 0%,transparent 70%);
+  border-radius:50%;
+}
+
+.hero-inner{
+  flex:1;
+  display:flex;align-items:center;
+  padding:80px 40px 60px;
+  max-width:1200px;
+  margin:0 auto;
+  width:100%;
+  gap:80px;
+}
+.hero-left{flex:1;min-width:0;}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-bottom:24px;
+}
+.hero-eyebrow-line{width:24px;height:1.5px;background:var(--gold);}
+.hero-eyebrow span{
+  font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);
+}
+.hero-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(42px,5.5vw,68px);
+  font-weight:700;line-height:1.05;
+  color:var(--ink);
+  margin-bottom:20px;
+  letter-spacing:-.01em;
+}
+.hero-h em{font-style:italic;color:var(--gold);}
+.hero-p{
+  font-size:15px;font-weight:300;
+  color:var(--ink3);line-height:1.75;
+  max-width:420px;
+  margin-bottom:40px;
+}
+.hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:56px;}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ink);color:var(--white);
+  font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  padding:14px 28px;border-radius:var(--r);border:1.5px solid var(--ink);
+  text-decoration:none;cursor:pointer;
+  transition:background .2s,transform .15s;
+}
+.btn-primary:hover{background:var(--ink2);transform:translateY(-1px);}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--ink);
+  font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  padding:14px 24px;border-radius:var(--r);
+  border:1.5px solid var(--border);
+  text-decoration:none;cursor:pointer;
+  transition:border-color .2s,background .2s;
+}
+.btn-secondary:hover{border-color:var(--ink3);background:var(--parchment2);}
+.btn-icon{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+
+.hero-kpi{
+  display:flex;gap:0;
+  border:1.5px solid var(--border);
+  border-radius:var(--r);
+  background:var(--white);
+  overflow:hidden;
+  max-width:420px;
+  box-shadow:var(--shadow-sm);
+}
+.kpi-cell{
+  flex:1;padding:20px 24px;
+  border-right:1px solid var(--border);
+  position:relative;
+}
+.kpi-cell:last-child{border-right:none;}
+.kpi-n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:700;
+  color:var(--ink);line-height:1;
+  margin-bottom:4px;
+}
+.kpi-l{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink4);line-height:1.4;}
+.kpi-accent{
+  position:absolute;top:0;left:0;
+  width:2px;height:100%;
+  background:var(--gold);
+  opacity:.5;
+}
+
+.hero-right{
+  flex-shrink:0;width:320px;
+  display:flex;flex-direction:column;gap:16px;
+}
+.hero-panel{
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-radius:var(--r);
+  padding:24px;
+  box-shadow:var(--shadow-sm);
+}
+.panel-label{
+  font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink4);margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.panel-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.panel-stat-list{display:flex;flex-direction:column;gap:10px;}
+.panel-stat-row{display:flex;justify-content:space-between;align-items:center;}
+.psr-key{font-size:13px;font-weight:400;color:var(--ink3);}
+.psr-val{font-size:13px;font-weight:600;color:var(--ink);}
+.status-dot{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:500;color:var(--green);
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
+
+/* ─ STRIP ─ */
+.strip{
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:var(--white);
+  padding:14px 40px;
+  display:flex;align-items:center;gap:32px;
+  overflow:hidden;
+}
+.strip-label{
+  font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink4);white-space:nowrap;flex-shrink:0;
+  padding-right:24px;border-right:1px solid var(--border);
+}
+.strip-ticker{flex:1;overflow:hidden;position:relative;}
+.ticker-track{
+  display:flex;white-space:nowrap;
+  animation:ticker 30s linear infinite;
+}
+.ticker-item{
+  display:inline-flex;align-items:center;gap:20px;
+  padding:0 28px;
+  font-size:11px;font-weight:500;color:var(--ink3);letter-spacing:.05em;
+}
+.ticker-sep{width:4px;height:4px;border-radius:50%;background:var(--border);flex-shrink:0;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─ SECTIONS ─ */
+.section{padding:80px 40px;}
+.section-white{background:var(--white);}
+.section-inner{max-width:1200px;margin:0 auto;}
+
+.section-header{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:48px;padding-bottom:24px;
+  border-bottom:1px solid var(--border);
+  gap:20px;flex-wrap:wrap;
+}
+.sh-left{}
+.sh-eyebrow{
+  font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;
+  display:flex;align-items:center;gap:8px;
+}
+.sh-eyebrow::before{content:'';width:16px;height:1.5px;background:var(--gold);}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,3.5vw,40px);
+  font-weight:700;color:var(--ink);
+  letter-spacing:-.01em;line-height:1.1;
+}
+.section-title em{font-style:italic;color:var(--gold);}
+.section-desc{font-size:13px;color:var(--ink3);line-height:1.7;margin-top:6px;max-width:480px;}
+.section-link{
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;
+  display:flex;align-items:center;gap:6px;
+  flex-shrink:0;
+}
+.section-link:hover{color:var(--gold2);}
+.section-link svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ─ FILTER TABS ─ */
+.filter-tabs{
+  display:flex;gap:0;
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  background:var(--parchment2);
+  padding:3px;
+  flex-wrap:wrap;
+  margin-bottom:36px;
+  width:fit-content;
+}
+.tab{
+  padding:8px 18px;border-radius:1px;
+  font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink3);cursor:pointer;
+  transition:background .18s,color .18s;
+  white-space:nowrap;
+}
+.tab:hover{color:var(--ink);}
+.tab.active{
+  background:var(--white);
+  color:var(--ink);
+  box-shadow:var(--shadow-sm);
+}
+
+/* ─ GERAI GRID ─ */
+.gerai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1px;background:var(--border);}
+.gerai-grid-wrap{border:1px solid var(--border);overflow:hidden;}
+
+.g-card{
+  background:var(--white);
+  cursor:pointer;
+  transition:background .18s;
+  display:flex;flex-direction:column;
+}
+.g-card:hover{background:var(--parchment);}
+
+.g-img{
+  height:200px;overflow:hidden;
+  background:var(--parchment2);
+  position:relative;
+  flex-shrink:0;
+}
+.g-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s var(--ease);
+}
+.g-card:hover .g-img img{transform:scale(1.03);}
+.g-img-ph{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+}
+.g-img-ph svg{width:28px;height:28px;stroke:var(--ink4);fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;opacity:.4;}
+.g-img-ph span{font-size:11px;font-weight:500;color:var(--ink4);letter-spacing:.04em;}
+
+.g-category{
+  position:absolute;top:0;left:0;
+  background:var(--ink);color:var(--white);
+  font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 12px;
+}
+.g-num{
+  position:absolute;bottom:16px;right:16px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;font-weight:700;font-style:italic;
+  color:rgba(255,255,255,.15);
+  line-height:1;pointer-events:none;
+}
+
+.g-body{padding:24px;flex:1;display:flex;flex-direction:column;}
+.g-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:700;color:var(--ink);
+  margin-bottom:8px;line-height:1.2;
+}
+.g-desc{font-size:13px;color:var(--ink3);line-height:1.65;flex:1;margin-bottom:20px;}
+.g-footer{
+  display:flex;align-items:center;gap:10px;
+  padding-top:16px;border-top:1px solid var(--border);
+}
+.g-contact{
+  flex:1;display:flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:500;color:var(--ink3);
+  text-decoration:none;
+  padding:10px 14px;
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  background:var(--parchment);
+  transition:border-color .18s,color .18s;
+}
+.g-contact:hover{border-color:var(--ink3);color:var(--ink);}
+.g-contact svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.g-status{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:var(--green);}
+.g-arrow{
+  width:36px;height:36px;
+  border:1px solid var(--border);border-radius:var(--r);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:background .18s,border-color .18s;
+}
+.g-card:hover .g-arrow{background:var(--ink);border-color:var(--ink);}
+.g-arrow svg{width:14px;height:14px;stroke:var(--ink3);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .18s;}
+.g-card:hover .g-arrow svg{stroke:var(--white);}
+
+/* ─ LOADING ─ */
+.loading-state{
+  padding:80px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;
+  grid-column:1/-1;
+}
+.loading-ring{
+  width:24px;height:24px;
+  border:1.5px solid var(--border);
+  border-top-color:var(--gold);
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:11px;font-weight:500;color:var(--ink4);letter-spacing:.08em;text-transform:uppercase;}
+
+/* ─ KEPIMPINAN ─ */
+.lead-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);}
+.lead-grid-wrap{border:1px solid var(--border);overflow:hidden;}
+
+.t-card{
+  background:var(--white);
+  padding:28px 24px;
+  cursor:pointer;
+  transition:background .18s;
+  position:relative;
+}
+.t-card:hover{background:var(--parchment);}
+.t-card.primary{background:var(--gold-light);}
+.t-card.primary:hover{background:#F0E5C8;}
+
+.t-rank{
+  font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;
+  padding-bottom:12px;border-bottom:1px solid var(--border);
+}
+.t-card.primary .t-rank{border-bottom-color:rgba(139,105,20,.2);}
+.t-avatar{
+  width:44px;height:44px;
+  border-radius:var(--r);
+  border:1px solid var(--border);
+  background:var(--parchment2);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;
+}
+.t-card.primary .t-avatar{background:rgba(139,105,20,.12);border-color:rgba(139,105,20,.2);}
+.t-avatar svg{width:20px;height:20px;stroke:var(--ink4);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.t-card.primary .t-avatar svg{stroke:var(--gold);}
+.t-name{font-size:14px;font-weight:600;color:var(--ink);line-height:1.35;}
+.t-cta{
+  display:flex;align-items:center;gap:4px;
+  font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--gold);margin-top:14px;
+  opacity:0;transform:translateY(4px);
+  transition:opacity .2s,transform .2s;
+}
+.t-cta svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.t-card:hover .t-cta{opacity:1;transform:none;}
+
+/* ─ MODALS ─ */
+.overlay{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(15,20,25,.6);
+  backdrop-filter:blur(8px);
+  display:none;align-items:flex-end;justify-content:center;
+}
+.overlay.open{display:flex;}
+@media(min-width:640px){.overlay{align-items:center;padding:24px;}}
+
+@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes fadeScale{from{opacity:0;scale:.97}to{opacity:1;scale:1}}
+
+/* TEACHER MODAL */
+.tm-modal{
+  width:100%;max-width:480px;
+  background:var(--white);
+  border-radius:0;
+  border-top:1px solid var(--border);
+  animation:slideUp .28s var(--ease);
+  max-height:88svh;overflow-y:auto;
+  position:relative;
+}
+@media(min-width:640px){
+  .tm-modal{
+    border:1px solid var(--border);
+    border-radius:0;
+    animation:fadeScale .25s var(--ease);
+    max-height:85vh;
+  }
+}
+.tm-drag{width:32px;height:2px;background:var(--border);border-radius:2px;margin:14px auto 0;}
+@media(min-width:640px){.tm-drag{display:none;}}
+.tm-header{
+  padding:28px 28px 24px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:flex-start;gap:16px;
+}
+.tm-av{
+  width:52px;height:52px;flex-shrink:0;
+  background:var(--gold-light);border:1.5px solid var(--gold-border);
+  border-radius:var(--r);
+  display:flex;align-items:center;justify-content:center;
+}
+.tm-av svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.tm-pos{font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.tm-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--ink);line-height:1.2;}
+.tm-body{padding:24px 28px 36px;}
+.tm-bio{font-size:14px;font-weight:300;color:var(--ink2);line-height:1.8;}
+
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:30px;height:30px;
+  display:flex;align-items:center;justify-content:center;
+  background:none;border:1px solid var(--border);
+  border-radius:var(--r);cursor:pointer;color:var(--ink4);
+  font-size:12px;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.modal-close:hover{background:var(--ink);color:var(--white);border-color:var(--ink);}
+
+/* GERAI MODAL */
+.gm-modal{
+  width:100%;max-width:600px;
+  background:var(--white);
+  border-top:1px solid var(--border);
+  animation:slideUp .28s var(--ease);
+  max-height:92svh;overflow-y:auto;
+  position:relative;
+}
+@media(min-width:640px){
+  .gm-modal{
+    border:1px solid var(--border);
+    border-radius:0;
+    animation:fadeScale .25s var(--ease);
+    max-height:90vh;
+  }
+}
+.gm-drag{width:32px;height:2px;background:var(--border);border-radius:2px;margin:14px auto 0;}
+@media(min-width:640px){.gm-drag{display:none;}}
+.gm-img{height:240px;background:var(--parchment2);position:relative;overflow:hidden;flex-shrink:0;}
+.gm-img img{width:100%;height:100%;object-fit:cover;}
+.gm-img-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.gm-img-ph svg{width:40px;height:40px;stroke:var(--ink4);fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.25;}
+.gm-cat-tag{
+  position:absolute;bottom:0;left:0;
+  background:var(--ink);color:var(--white);
+  font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  padding:8px 14px;
+}
+.gm-body{padding:28px;}
+.gm-name{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;color:var(--ink);margin-bottom:10px;line-height:1.1;}
+.gm-desc{font-size:13px;font-weight:300;color:var(--ink2);line-height:1.8;margin-bottom:28px;}
+
+.gm-section-label{
+  font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink4);
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:16px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--border);
+}
+.prod-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:28px;}
+.prod-cell{
+  aspect-ratio:1;background:var(--parchment2);
+  border:1px solid var(--border);
+  overflow:hidden;position:relative;cursor:pointer;
+}
+.prod-cell img{width:100%;height:100%;object-fit:cover;transition:transform .4s var(--ease);}
+.prod-cell:hover img{transform:scale(1.05);}
+.prod-cell-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
+.prod-cell-ph svg{width:20px;height:20px;stroke:var(--ink4);fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;opacity:.3;}
+.prod-cell-ph span{font-size:10px;font-weight:500;color:var(--ink4);text-align:center;padding:0 6px;line-height:1.3;}
+.prod-cell-label{
+  position:absolute;bottom:0;left:0;right:0;
+  background:rgba(15,20,25,.7);
+  color:var(--white);font-size:9px;font-weight:600;letter-spacing:.04em;
+  padding:8px;
+  transform:translateY(100%);
+  transition:transform .2s;
+}
+.prod-cell:hover .prod-cell-label{transform:none;}
+
+.member-list{display:flex;flex-direction:column;margin-bottom:28px;}
+.member-row{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 0;border-bottom:1px solid var(--border);
+}
+.member-row:last-child{border-bottom:none;}
+.member-av{
+  width:32px;height:32px;flex-shrink:0;
+  background:var(--parchment2);border:1px solid var(--border);
+  border-radius:var(--r);
+  display:flex;align-items:center;justify-content:center;
+}
+.member-av svg{width:14px;height:14px;stroke:var(--ink4);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.member-name{font-size:13px;font-weight:500;color:var(--ink);flex:1;}
+.member-role{
+  font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink4);background:var(--parchment2);
+  border:1px solid var(--border);
+  padding:4px 10px;
+}
+
+.gm-cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--ink);color:var(--white);
+  font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:18px 24px;border:none;cursor:pointer;border-radius:0;width:100%;
+  text-decoration:none;
+  transition:background .18s;
+}
+.gm-cta:hover{background:var(--ink2);}
+.gm-cta svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ─ FOOTER ─ */
+footer{
+  background:var(--ink);
+  padding:40px;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.footer-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:20px;
+}
+.ft-brand{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;font-weight:600;font-style:italic;
+  color:rgba(248,245,240,.3);
+}
+.ft-brand span{color:rgba(184,137,26,.6);}
+.ft-nav{display:flex;gap:24px;}
+.ft-nav a{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(248,245,240,.2);text-decoration:none;transition:color .2s;}
+.ft-nav a:hover{color:rgba(248,245,240,.5);}
+.ft-copy{font-size:10px;font-weight:400;color:rgba(248,245,240,.12);letter-spacing:.06em;}
+
+/* ─ TOAST ─ */
+.toast{
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);
+  z-index:9999;
+  background:var(--ink);color:var(--white);
+  font-size:12px;font-weight:500;letter-spacing:.04em;
+  padding:14px 20px;
+  border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;gap:10px;
+  opacity:0;
+  transition:transform .3s var(--ease),opacity .3s;
+  pointer-events:none;
+  white-space:nowrap;
+  box-shadow:var(--shadow-lg);
+}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+.toast-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;}
+
+/* ─ REVEAL ─ */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;}
+.rv.in{opacity:1;transform:none;}
+.d1{transition-delay:.05s}.d2{transition-delay:.1s}.d3{transition-delay:.15s}.d4{transition-delay:.2s}.d5{transition-delay:.25s}
+
+/* ─ RESPONSIVE ─ */
+@media(max-width:960px){
+  .hero-inner{flex-direction:column;gap:48px;padding:60px 32px 48px;}
+  .hero-right{width:100%;max-width:100%;}
+}
+@media(max-width:680px){
+  #nav,footer,.section,.strip{padding-left:20px;padding-right:20px;}
+  .hero-inner{padding:48px 20px 40px;}
+  .gerai-grid{grid-template-columns:1fr;}
+  .lead-grid{grid-template-columns:1fr 1fr;}
+  .filter-tabs{width:100%;overflow-x:auto;border-radius:var(--r);}
+  .section-header{flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:400px){
+  .lead-grid{grid-template-columns:1fr;}
+  .nav-links .nav-link:not(.primary){display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast">
+  <div class="toast-dot"></div>
+  <span id="toastTxt"></span>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <div class="nav-divider"></div>
+    <div class="nav-brand">
+      <span class="nav-brand-main">BizHub</span>
+      <span class="nav-brand-sub">TVETMARA Lumut</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#gerai">Gerai</a>
+    <a class="nav-link" href="#kepimpinan">Kepimpinan</a>
+    <a class="nav-link primary" href="login.html">Admin</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-rule" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>Platform Usahawan Pelajar · 2026</span>
+      </div>
+      <h1 class="hero-h">
+        Gerai Usahawan<br/>
+        <em>TVETMARA Lumut</em>
+      </h1>
+      <p class="hero-p">Platform penghubung antara gerai usahawan pelajar TVETMARA LUMUT dengan pelanggan. Temui produk berkualiti hasil usaha pelajar kami.</p>
+      <div class="hero-actions">
+        <a href="#gerai" class="btn-primary">
+          <svg class="btn-icon" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          Terokai Gerai
+        </a>
+        <a href="#kepimpinan" class="btn-secondary">Kepimpinan</a>
+      </div>
+      <div class="hero-kpi">
+        <div class="kpi-cell">
+          <div class="kpi-accent"></div>
+          <div class="kpi-n" id="heroCount">—</div>
+          <div class="kpi-l">Gerai Aktif</div>
+        </div>
+        <div class="kpi-cell">
+          <div class="kpi-n">100%</div>
+          <div class="kpi-l">Dikendalikan Pelajar</div>
+        </div>
+        <div class="kpi-cell">
+          <div class="kpi-n">4.9</div>
+          <div class="kpi-l">Indeks Kepuasan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right rv d2">
+      <div class="hero-panel">
+        <div class="panel-label">Status Platform</div>
+        <div class="panel-stat-list">
+          <div class="panel-stat-row">
+            <span class="psr-key">Program</span>
+            <span class="psr-val">Usahawan BizHub</span>
+          </div>
+          <div class="panel-stat-row">
+            <span class="psr-key">Institusi</span>
+            <span class="psr-val">TVETMARA Lumut</span>
+          </div>
+          <div class="panel-stat-row">
+            <span class="psr-key">Sesi</span>
+            <span class="psr-val">2026</span>
+          </div>
+          <div class="panel-stat-row">
+            <span class="psr-key">Status</span>
+            <span class="status-dot"><span class="dot"></span>Aktif</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="panel-label">Maklumat Ringkas</div>
+        <div class="panel-stat-list">
+          <div class="panel-stat-row">
+            <span class="psr-key">Kategori Gerai</span>
+            <span class="psr-val">6 Jenis</span>
+          </div>
+          <div class="panel-stat-row">
+            <span class="psr-key">Pengendalian</span>
+            <span class="psr-val">Sepenuhnya Pelajar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER STRIP -->
+<div class="strip">
+  <div class="strip-label">Usahawan BizHub</div>
+  <div class="strip-ticker">
+    <div class="ticker-track" id="tickerTrack">
+      <span class="ticker-item">Usahawan BizHub<span class="ticker-sep"></span></span>
+      <span class="ticker-item">TVETMARA Lumut<span class="ticker-sep"></span></span>
+      <span class="ticker-item">Sokong Usahawan Pelajar<span class="ticker-sep"></span></span>
+      <span class="ticker-item">Produk Tempatan Berkualiti<span class="ticker-sep"></span></span>
+      <span class="ticker-item">Program Keusahawanan 2026<span class="ticker-sep"></span></span>
+      <span class="ticker-item">Usahawan BizHub<span class="ticker-sep"></span></span>
+      <span class="ticker-item">TVETMARA Lumut<span class="ticker-sep"></span></span>
+      <span class="ticker-item">Sokong Usahawan Pelajar<span class="ticker-sep"></span></span>
+      <span class="ticker-item">Produk Tempatan Berkualiti<span class="ticker-sep"></span></span>
+      <span class="ticker-item">Program Keusahawanan 2026<span class="ticker-sep"></span></span>
+    </div>
+  </div>
+</div>
+
+<!-- GERAI SECTION -->
+<section class="section" id="gerai">
+  <div class="section-inner">
+    <div class="section-header rv">
+      <div class="sh-left">
+        <div class="sh-eyebrow">Direktori Gerai</div>
+        <h2 class="section-title">Gerai <em>Pelajar</em></h2>
+        <p class="section-desc">Klik mana-mana gerai untuk melihat profil penuh, produk, ahli kumpulan dan maklumat hubungan.</p>
+      </div>
+    </div>
+
+    <div class="filter-tabs rv" id="filterTabs">
+      <div class="tab active" data-cat="Semua">Semua</div>
+      <div class="tab" data-cat="Noodle Dish">Noodle Dish</div>
+      <div class="tab" data-cat="Dessert">Dessert</div>
+      <div class="tab" data-cat="Burger">Burger</div>
+      <div class="tab" data-cat="Minuman">Minuman</div>
+      <div class="tab" data-cat="Barber">Barber</div>
+    </div>
+
+    <div class="gerai-grid-wrap rv">
+      <div class="gerai-grid" id="geraiGrid">
+        <div class="loading-state">
+          <div class="loading-ring"></div>
+          <div class="loading-text">Memuatkan data gerai</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEPIMPINAN -->
+<section class="section section-white" id="kepimpinan">
+  <div class="section-inner">
+    <div class="section-header rv">
+      <div class="sh-left">
+        <div class="sh-eyebrow">Pentadbiran Program</div>
+        <h2 class="section-title">Ahli Jawatan <em>Kuasa</em></h2>
+        <p class="section-desc">Pentadbir dan tenaga pengajar yang memimpin program dengan dedikasi dan komitmen.</p>
+      </div>
+    </div>
+    <div class="lead-grid-wrap rv">
+      <div class="lead-grid">
+        <div class="t-card primary d1" onclick="openTeacher(0)">
+          <div class="t-rank">Pengerusi</div>
+          <div class="t-avatar">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="t-name">Pn. NORHAYATI BINTI ABDUL LATIF </div>
+          <div class="t-cta">Profil <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+        <div class="t-card d2" onclick="openTeacher(1)">
+          <div class="t-rank">Tim. Pengerusi</div>
+          <div class="t-avatar">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="t-name">Pn. NORMASHITA BINTI ISMAIL</div>
+          <div class="t-cta">Profil <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+        <div class="t-card d3" onclick="openTeacher(2)">
+          <div class="t-rank">Setiausaha</div>
+          <div class="t-avatar">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="t-name">En. AMMAR YASIR BIN A.B. SHUKOR</div>
+          <div class="t-cta">Profil <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+        </div>
+        <div class="t-card d3" onclick="openTeacher(3)">
+          <div class="t-rank">Setiausaha</div>
+          <div class="t-avatar">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="t-name">En. MOHD IRFAN BIN RAHMAT</div>
+          <div class="t-cta">Profil <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </div>
+          </div>
+         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="ft-brand">Usahawan <span>BizHub</span> · TVETMARA Lumut</div>
+    <nav class="ft-nav">
+      <a href="#gerai">Gerai</a>
+      <a href="#kepimpinan">Kepimpinan</a>
+    </nav>
+    <div class="ft-copy">© 2026 Usahawan BizHub · TVETMARA Lumut</div>
+  </div>
+</footer>
+
+<!-- TEACHER MODAL -->
+<div class="overlay" id="teacherOverlay" onclick="closeTOv(event)">
+  <div class="tm-modal">
+    <div class="tm-drag"></div>
+    <button class="modal-close" onclick="closeTeacher()">✕</button>
+    <div class="tm-header">
+      <div class="tm-av">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div>
+        <div class="tm-pos" id="tPos"></div>
+        <div class="tm-name" id="tName"></div>
+      </div>
+    </div>
+    <div class="tm-body">
+      <p class="tm-bio" id="tBio"></p>
+    </div>
+  </div>
+</div>
+
+<!-- GERAI MODAL -->
+<div class="overlay" id="geraiOverlay" onclick="closeGOv(event)">
+  <div class="gm-modal">
+    <div class="gm-drag"></div>
+    <button class="modal-close" onclick="closeGerai()" style="top:20px;right:16px;">✕</button>
+    <div class="gm-img" id="gmImg"></div>
+    <div class="gm-body">
+      <div class="gm-name" id="gmName"></div>
+      <div class="gm-desc" id="gmDesc"></div>
+      <div class="gm-section-label">Produk &amp; Menu</div>
+      <div class="prod-gallery" id="gmGallery"></div>
+      <div class="gm-section-label">Ahli Kumpulan</div>
+      <div class="member-list" id="gmMembers"></div>
+      <a class="gm-cta" id="gmCta" href="#">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.19 15a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span id="gmCtaTxt"></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, onSnapshot, orderBy, query } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey:"AIzaSyBDmBh-vjg6EtYMPAdJMjIZlzleCiVBNPs",
+  authDomain:"bizhub-e56a4.firebaseapp.com",
+  projectId:"bizhub-e56a4",
+  storageBucket:"bizhub-e56a4.firebasestorage.app",
+  messagingSenderId:"1042454362217",
+  appId:"1:1042454362217:web:5d98f197ec1d795b76caf8"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+window._db = db;
+
+const q = query(collection(db,"shops"), orderBy("createdAt","asc"));
+onSnapshot(q,(snap)=>{
+  const shops=[];
+  snap.forEach(d=>shops.push({id:d.id,...d.data()}));
+  window._SHOPS=shops;
+  renderGrid(shops);
+  updateTicker(shops.map(s=>s.name));
+},(err)=>{
+  console.error(err);
+  document.getElementById('geraiGrid').innerHTML=`<div class="loading-state" style="grid-column:1/-1;"><div class="loading-text" style="color:#c0392b;">Gagal memuatkan data. Semak sambungan.</div></div>`;
+});
+
+function updateTicker(names){
+  if(!names.length)return;
+  const track=document.getElementById('tickerTrack');
+  const items=[...names,...names].map(n=>`<span class="ticker-item">${n}<span class="ticker-sep"></span></span>`).join('');
+  track.innerHTML=items;
+}
+
+window.renderGrid=function(shops){
+  document.getElementById('heroCount').textContent=shops.length;
+  const g=document.getElementById('geraiGrid');
+  if(!shops.length){
+    g.innerHTML=`<div class="loading-state"><div class="loading-text">Tiada gerai buat masa ini.</div></div>`;
+    return;
+  }
+  g.innerHTML=shops.map((d,i)=>`
+    <div class="g-card rv" onclick="openGerai('${d.id}')">
+      <div class="g-img">
+        ${d.img?`<img src="${d.img}" alt="${d.name}" loading="lazy"/>`:`<div class="g-img-ph"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>${d.cat}</span></div>`}
+        <div class="g-category">${d.cat}</div>
+        <div class="g-num">0${i+1}</div>
+      </div>
+      <div class="g-body">
+        <div class="g-name">${d.name}</div>
+        <div class="g-desc">${d.desc||'—'}</div>
+        <div class="g-footer">
+          <a class="g-contact" href="${d.href}" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.19 15a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            ${d.tel}
+          </a>
+          <div class="g-arrow">
+            <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+  document.querySelectorAll('.g-card.rv').forEach(el=>io.observe(el));
+};
+</script>
+
+<script>
+const TEACHERS=[
+  {pos:'Pengerusi',name:'Pn. NORHAYATI BINTI ABDUL LATIF',bio:'Bertanggungjawab memimpin dan mengurus keseluruhan program Usahawan BizHub TVETMARA LUMUT. Berpengalaman lebih 15 tahun dalam bidang keusahawanan dan pendidikan teknikal.'},
+  {pos:'Timbalan Pengerusi',name:'Pn. NORMASHITA BINTI ISMAIL',bio:'Membantu pengerusi dalam merancang dan melaksanakan program keusahawanan pelajar. Pakar dalam pembangunan kurikulum keusahawanan.'},
+  {pos:'Setiausaha',name:'En. AMMAR YASIR BIN A.B. SHUKOR',bio:'Menguruskan hal ehwal pentadbiran program termasuk pendaftaran gerai, penyelarasan aktiviti harian, dan dokumentasi rasmi.'},
+  {pos:'Setiausaha',name:'En. MOHD IRFAN BIN RAHMAT',bio:'Menguruskan hal ehwal pentadbiran program termasuk pendaftaran gerai, penyelarasan aktiviti harian, dan dokumentasi rasmi.'},
+  
+];
+
+/* FILTER */
+let activeFilter='Semua';
+document.getElementById('filterTabs').addEventListener('click',e=>{
+  const tab=e.target.closest('.tab');if(!tab)return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  activeFilter=tab.dataset.cat;
+  const shops=window._SHOPS||[];
+  const filtered=activeFilter==='Semua'?shops:shops.filter(s=>s.cat===activeFilter);
+  if(window.renderGrid)window.renderGrid(filtered);
+});
+
+/* TEACHER MODAL */
+function openTeacher(i){
+  const t=TEACHERS[i];
+  document.getElementById('tPos').textContent=t.pos;
+  document.getElementById('tName').textContent=t.name;
+  document.getElementById('tBio').textContent=t.bio;
+  document.getElementById('teacherOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeTeacher(){document.getElementById('teacherOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeTOv(e){if(e.target.id==='teacherOverlay')closeTeacher();}
+
+/* GERAI MODAL */
+function openGerai(id){
+  const d=(window._SHOPS||[]).find(x=>x.id===id);if(!d)return;
+  document.getElementById('gmImg').innerHTML=d.img
+    ?`<img src="${d.img}" alt="${d.name}"/><div class="gm-cat-tag">${d.cat}</div>`
+    :`<div class="gm-img-ph"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="gm-cat-tag">${d.cat}</div>`;
+  document.getElementById('gmName').textContent=d.name;
+  document.getElementById('gmDesc').textContent=d.desc||'—';
+  const gallery=document.getElementById('gmGallery');
+  gallery.innerHTML=d.products?.length
+    ?d.products.map(p=>`
+      <div class="prod-cell">
+        ${p.img?`<img src="${p.img}" alt="${p.name}" loading="lazy"/>`:`<div class="prod-cell-ph"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>${p.name}</span></div>`}
+        <div class="prod-cell-label">${p.name}</div>
+      </div>`).join('')
+    :`<div style="grid-column:1/-1;padding:24px;font-size:12px;font-weight:500;color:var(--ink4);text-align:center;letter-spacing:.04em;text-transform:uppercase;">Tiada produk didaftarkan</div>`;
+  document.getElementById('gmMembers').innerHTML=d.members?.length
+    ?d.members.map(m=>`
+      <div class="member-row">
+        <div class="member-av"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="member-name">${m.n||m.name}</div>
+        <div class="member-role">${m.r||m.role||'Ahli'}</div>
+      </div>`).join('')
+    :`<div class="member-row"><div class="member-name" style="color:var(--ink4);font-size:12px;">Tiada ahli didaftarkan.</div></div>`;
+  document.getElementById('gmCta').href=d.href;
+  document.getElementById('gmCtaTxt').textContent=`Hubungi — ${d.tel}`;
+  document.getElementById('geraiOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeGerai(){document.getElementById('geraiOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeGOv(e){if(e.target.id==='geraiOverlay')closeGerai();}
+
+/* NAV SCROLL */
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60));
+
+/* REVEAL */
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.06});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
